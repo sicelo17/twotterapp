@@ -11,24 +11,35 @@
         <strong>Followers: </strong>{{ followers }}
       </div>
     </div>
+    <div class="user-profile_twoots-wrapper">
+        <TwootItem v-for="twoot in user.twoots" :key="twoot.id" :username="user.username" :twoot="twoot" />
+    </div>
   </div>
 </template>
 
 <script>
+
+import TwootItem from './TwootItem';
 export default {
   name: "UserProfile",
-  components: {},
+  components: {
+      TwootItem
+  },
   data() {
     return {
-      followers: 0,
-      user: {
-        id: 1,
-        username: "_UncleCycha_",
-        firstName: "Sicelo",
-        lastName: "Sitsha",
-        email: "sicelositsha@yahoo.com",
-        isAdmin: true,
-      },
+        followers: 0,
+        user: {
+            id: 1,
+            username: "_UncleCycha_",
+            firstName: "Sicelo",
+            lastName: "Sitsha",
+            email: "sicelositsha@yahoo.com",
+            isAdmin: true,
+            twoots: [
+                {id: 1, content: "Twooter is amazing "},
+                {id: 2, content: "Vuejs is fun"}
+            ]
+        },
     };
   },
   computed: {
@@ -52,7 +63,7 @@ export default {
   display: grid;
   grid-template-columns: 1fr 3fr;
   width: 100%;
-  padding: 50px 5%;
+  padding: 50px 10px;
 }
 
 .user-profile_user-panel {
@@ -80,5 +91,10 @@ export default {
 
 h1 {
     margin: 0;
+}
+
+.user-profile_twoots-wrapper {
+    display: grid;
+    grid-gap: 10px;
 }
 </style>
