@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="user-profile_twoots-wrapper">
-        <TwootItem v-for="twoot in user.twoots" :key="twoot.id" :username="user.username" :twoot="twoot" />
+        <TwootItem v-for="twoot in user.twoots" :key="twoot.id" :username="user.username" :twoot="twoot" @favorite="toggleFavorite" />
     </div>
   </div>
 </template>
@@ -37,7 +37,8 @@ export default {
             isAdmin: true,
             twoots: [
                 {id: 1, content: "Twooter is amazing "},
-                {id: 2, content: "Vuejs is fun"}
+                {id: 2, content: "Vuejs is fun"},
+                {id: 3, content: "This is the third twoot"}
             ]
         },
     };
@@ -51,6 +52,9 @@ export default {
     followUser() {
       this.followers++;
     },
+    toggleFavorite(id){
+        console.log(`Favorited twoot #${id}`);
+    }
   },
   mounted() {
     this.followUser();
