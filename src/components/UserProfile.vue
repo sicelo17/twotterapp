@@ -17,7 +17,9 @@
           <div class="user-profile_create-twoot-type">
               <label for="newTwootType"><strong>Type: </strong></label>
               <select id="newTwootType">
-                  <option :value="option.value"></option>
+                  <option :value="option.value" v-for="(option, index) in twootTypes" :key="index">
+                      {{option.name}}
+                  </option>
               </select>
           </div>
       </form>
@@ -43,6 +45,7 @@ export default {
   },
   data() {
     return {
+        
         twootTypes : [
             {value: 'draft', name: 'Draft'},
             {value: 'instant', name: 'Instant Twoot'}
