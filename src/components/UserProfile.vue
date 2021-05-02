@@ -10,9 +10,25 @@
       <div class="user-profile_followerCount">
         <strong>Followers: </strong>{{ followers }}
       </div>
+      <form class="user-profile_create-twoot">
+          <label for="newTwoot"><strong>New Twoot</strong></label>
+          <textarea id="newTwoot" rows="4"></textarea>
+
+          <div class="user-profile_create-twoot-type">
+              <label for="newTwootType"><strong>Type: </strong></label>
+              <select id="newTwootType">
+                  <option :value="option.value"></option>
+              </select>
+          </div>
+      </form>
     </div>
     <div class="user-profile_twoots-wrapper">
-        <TwootItem v-for="twoot in user.twoots" :key="twoot.id" :username="user.username" :twoot="twoot" @favorite="toggleFavorite" />
+        <TwootItem 
+        v-for="twoot in user.twoots" 
+        :key="twoot.id" 
+        :username="user.username" 
+        :twoot="twoot"
+        @favorite="toggleFavorite" />
     </div>
   </div>
 </template>
@@ -27,6 +43,10 @@ export default {
   },
   data() {
     return {
+        twootTypes : [
+            {value: 'draft', name: 'Draft'},
+            {value: 'instant', name: 'Instant Twoot'}
+        ],
         followers: 0,
         user: {
             id: 1,
@@ -86,6 +106,7 @@ export default {
     border-radius: 5px;
     margin-right : auto;
     padding: 0 10px;
+    font-weight: bold;
 }
 
 .user-profile_followerCount {
@@ -100,5 +121,12 @@ h1 {
 .user-profile_twoots-wrapper {
     display: grid;
     grid-gap: 10px;
+}
+
+.user-profile_create-twoot {
+    border-top: 1px solid #DFE3E8;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
 }
 </style>
