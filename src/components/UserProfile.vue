@@ -10,18 +10,22 @@
       <div class="user-profile_followerCount">
         <strong>Followers: </strong>{{ followers }}
       </div>
-      <form class="user-profile_create-twoot">
+      <form class="user-profile_create-twoot" @submit.prevent="createNewTwoot">
           <label for="newTwoot"><strong>New Twoot</strong></label>
-          <textarea id="newTwoot" rows="4"></textarea>
+          <textarea id="newTwoot" rows="4" v-model="newTwootContent "></textarea>
 
           <div class="user-profile_create-twoot-type">
               <label for="newTwootType"><strong>Type: </strong></label>
-              <select id="newTwootType">
+              <select id="newTwootType" v-model="selectedTwootType">
                   <option :value="option.value" v-for="(option, index) in twootTypes" :key="index">
                       {{option.name}}
                   </option>
               </select>
           </div>
+
+          <button>
+              Twoot
+          </button>
       </form>
     </div>
     <div class="user-profile_twoots-wrapper">
@@ -45,7 +49,8 @@ export default {
   },
   data() {
     return {
-        
+        newTwootContent: '',
+        selectedTwootType: 'instant',
         twootTypes : [
             {value: 'draft', name: 'Draft'},
             {value: 'instant', name: 'Instant Twoot'}
@@ -61,7 +66,7 @@ export default {
             twoots: [
                 {id: 1, content: "Twooter is amazing "},
                 {id: 2, content: "Vuejs is fun"},
-                {id: 3, content: "This is the third twoot"}
+
             ]
         },
     };
@@ -77,6 +82,16 @@ export default {
     },
     toggleFavorite(id){
         console.log(`Favorited twoot #${id}`);
+    },
+    createNewTwoot() {
+        if(this.newTwootContent && this.selectedTwootType !== 'draft'){
+            this.user.twoots.unshift({
+                id: this.user.twoots.length + 1,
+                content: this.newTwootContent
+            });
+
+            this.newTwootContent = '';
+        }
     }
   },
   mounted() {
@@ -101,6 +116,7 @@ export default {
     background-color: white;
     border-radius: 5px;
     border: 1px solid #DFE3E8;
+    height: 35vh;
 }
 
 .user-profile_admin-badge {
