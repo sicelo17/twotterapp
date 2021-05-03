@@ -69,7 +69,7 @@ export default {
   display: flex;
   flex-direction: column;
   textarea {
-    border: 1px solid #DFE3E8;
+    border: 1px solid #dfe3e8;
     border-radius: 5px;
   }
   .create-twoot-panel__submit {
