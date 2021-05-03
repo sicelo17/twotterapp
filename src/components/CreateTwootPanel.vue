@@ -9,7 +9,7 @@
     >
     <textarea id="newTwoot" rows="4" v-model="newTwootContent"></textarea>
 
-    <div class="create-twoot-panel_submit">
+    <div class="create-twoot-panel__submit">
       <div class="create-twoot-type">
         <label for="newTwootType"><strong>Type: </strong></label>
         <select id="newTwootType" v-model="selectedTwootType">
