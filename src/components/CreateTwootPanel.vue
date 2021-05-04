@@ -4,7 +4,9 @@
     @submit.prevent="createNewTwoot"
     :class="{ '--exceeded': newTwootCharacterCount > 180 }"
   >
-    <label for="newTwoot"><strong>New Twoot</strong> ({{newTwootCharacterCount}}/180) </label>
+    <label for="newTwoot"
+      ><strong>New Twoot</strong> ({{ newTwootCharacterCount }}/180)
+    </label>
     <textarea id="newTwoot" rows="4" v-model="newTwootContent"></textarea>
 
     <div class="create-twoot-panel__submit">
@@ -31,29 +33,28 @@ export default {
   name: "CreateTwootPanel",
   data() {
     return {
-      newTwootContent: '',
+      newTwootContent: "",
       selectedTwootType: "instant",
       twootTypes: [
         { value: "draft", name: "Draft" },
         { value: "instant", name: "Instant Twoot" },
       ],
-      }
-  },
-      computed: {
-        newTwootCharacterCount() {
-          return this.newTwootContent.length  
-        }
-      },
-      methods: {
-        createNewTwoot() {
-          if (this.newTwootContent && this.selectedTwootType !== "draft") {
-            this.$emit('add-twoot', this.newTwootContent)
-            this.newTwootContent = "";
-          }
-        },
-      },
     };
-
+  },
+  computed: {
+    newTwootCharacterCount() {
+      return this.newTwootContent.length;
+    },
+  },
+  methods: {
+    createNewTwoot() {
+      if (this.newTwootContent && this.selectedTwootType !== "draft") {
+        this.$emit("add-twoot", this.newTwootContent);
+        this.newTwootContent = "";
+      }
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
