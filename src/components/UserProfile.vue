@@ -53,9 +53,9 @@ export default {
     followUser() {
       this.followers++;
     },
-    toggleFavorite(id) {
-      console.log(`Favorited twoot #${id}`);
-    },
+    addTwoot(twoot) {
+        this.user.twoots.unshift({id:this.user.twoots.length + 1, content: twoot })
+    }
   },
   mounted() {
     this.followUser();
