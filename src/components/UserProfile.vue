@@ -25,8 +25,8 @@
 
 <script>
 import { reactive } from 'vue';
-import CreateTwootPanel from "../components/CreateTwootPanel";
-import TwootItem from "../components/TwootItem";
+import CreateTwootPanel from "./CreateTwootPanel";
+import TwootItem from "./TwootItem";
 export default {
   name: "UserProfile",
   components: {
